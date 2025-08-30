@@ -40,7 +40,4 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
-const port = 5000;
-app.listen(port, () => {
-  console.log("server running");
-});
+export default app;
