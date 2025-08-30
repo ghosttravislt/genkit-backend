@@ -15,7 +15,7 @@ const chat = genkit({
   model: googleAI.model("gemini-2.5-flash"),
 });
 
-app.post("/api/chat", async (req, res) => {
+app.post("/api/chat/", async (req, res) => {
   try {
     // assigning prompt to req.body
     const { prompt } = req.body;
@@ -40,4 +40,7 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
-export default app;
+const port = 5000;
+app.listen(port, () => {
+  console.log("server running");
+});
