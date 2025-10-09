@@ -29,6 +29,9 @@ app.post("/api/chat/", async (req, res) => {
     const { output ,stream} = chat.generateStream({
       prompt,
       output: { format: "text" },
+      config:{
+        maxOutputTokens : 280,
+      }
     });
 
      let fullText = "";
