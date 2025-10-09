@@ -20,19 +20,24 @@ app.post("/api/chat/", async (req, res) => {
     // assigning prompt to req.body
     const { prompt } = req.body;
 
-    // // checkig if prompt is empty
+     // checkig if prompt is empty
     if (!prompt || !prompt.trim()) {
       return res.status(400).json({ error: "Prompt is required" });
     }
 
     //   connecting model with prompt
-    const { output } = await chat.generate({
+    const { output ,stream} = chat.generateStream({
       prompt,
       output: { format: "text" },
     });
 
+     let fullText = "";
+
+    for await (const chunk of stream){
+       if (chunk.text) fullText += chunk.text;
+    }
+    res.json({text:fullText});
     // storing output in json format
-    res.json({ output });
     // console.log(output.output);
   } catch (error) {
     console.error("Genkit error:", err);
