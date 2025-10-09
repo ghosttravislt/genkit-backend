@@ -30,7 +30,7 @@ app.post("/api/chat/", async (req, res) => {
       prompt,
       output: { format: "text" },
       config:{
-        maxOutputTokens : 280,
+        maxOutputTokens : 512,
       }
     });
 
